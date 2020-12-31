@@ -42,4 +42,4 @@ RUN mkdir ./app/json
 
 # node
 WORKDIR /app/
-ENTRYPOINT ["node", "/app/main.js"]
+ENTRYPOINT ["node", "main.js"]
