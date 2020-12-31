@@ -19,6 +19,12 @@ docker build --no-cache \
 - コンテナの実行
 
 ```bash
+docker run simpledai/kurumi-in-container
+```
+
+- コンテナの実行（bash起動）
+
+```bash
 docker run -it simpledai/kurumi-in-container \
 /bin/bash
 ```
