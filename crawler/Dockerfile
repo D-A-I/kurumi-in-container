@@ -33,8 +33,6 @@ RUN curl -sS https://deb.nodesource.com/setup_${NODE_VER}.x | bash - \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# +++ /app/jsonフォルダを、データコンテナ化 +++
-
 ARG CRAWLER_PATH
 COPY init.json /app/init.json
 COPY --from=builder ${CRAWLER_PATH}/dist /app/

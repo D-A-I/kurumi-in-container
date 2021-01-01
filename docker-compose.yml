@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  crawler:
+    build:
+      context: ./crawler/
+      dockerfile: Dockerfile
+    container_name: kurumi-crawler
+    volumes:
+      - json_data:/app/json
+    # ports: 
+    #   - 59001:59001
+    # 環境変数..
+    # environment: 
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    container_name: kurumi-client
+    volumes:
+      - json_data:/app/json
+volumes:
+  json_data:
