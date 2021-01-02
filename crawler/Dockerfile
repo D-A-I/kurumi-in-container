@@ -7,7 +7,7 @@ ARG CRAWLER_PATH=/kurumi-crawler
 # build stage
 FROM node:${NODE_IMAGE_VER} AS builder
 
-# git
+# tools
 RUN apt-get update && apt-get install -y \
   git \
   && apt-get clean \
@@ -26,18 +26,19 @@ FROM selenium/standalone-chrome:${CHROME_IMAGE_VER} AS production
 
 USER root
 
-# node.js
+# tools
 ARG NODE_VER
 RUN curl -sS https://deb.nodesource.com/setup_${NODE_VER}.x | bash - \
   && apt-get install -y nodejs \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+# setup
 ARG CRAWLER_PATH
 COPY init.json /app/init.json
 COPY --from=builder ${CRAWLER_PATH}/dist /app/
 RUN mkdir ./app/json
 
-# node
+# proc run
 WORKDIR /app/
 ENTRYPOINT ["node", "main.js"]

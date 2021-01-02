@@ -4,18 +4,17 @@ services:
     build:
       context: ./crawler/
       dockerfile: Dockerfile
-    container_name: kurumi-crawler
     volumes:
       - json_data:/app/json
-    # ports: 
+    # container_name: kurumi-crawler
+    # ports:
     #   - 59001:59001
-    # 環境変数..
-    # environment: 
+    # environment:
+    #   - NODE_ENV: development
   client:
     build:
-      context: .
-      dockerfile: ./client/Dockerfile
-    container_name: kurumi-client
+      context: ./client/
+      dockerfile: Dockerfile
     volumes:
       - json_data:/app/json
 volumes:

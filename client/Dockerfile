@@ -12,11 +12,12 @@ RUN apt-get update && apt-get install -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+# setup
 ARG CLIENT_PATH
-RUN git clone https://github.com/D-A-I/kurumi-client.git
-RUN mv ${CLIENT_PATH} /app \
+RUN git clone https://github.com/D-A-I/kurumi-client.git \
+  && mv ${CLIENT_PATH} /app \
   && mkdir ./app/json
 
-# node
+# proc run
 WORKDIR /app/
 ENTRYPOINT ["sh", "client.sh"]
